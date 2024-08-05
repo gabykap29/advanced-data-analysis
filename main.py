@@ -1,11 +1,9 @@
-from .database.db_connection import Session, engine, Base
-from .models import employee_perfomance
+from database.db_connection import Session, engine, Base
+from models import employee_perfomance
+from utils.add_data_to_mysql import add_data_to_mysql
 
 if __name__ == "__main__":
-    #creamos la base de datos
-    Base.metadata.create_all(bind=engine)
+    add_data_to_mysql()
+    print("Data added to MySQL")
 
-    #Abro la session
-    session = Session()
 
-    

@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float
-from ..models import Base
+from database.db_connection import Base
 
 #creamos una clase que hereda de Base
 

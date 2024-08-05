@@ -1,5 +1,5 @@
-from ..database.db_connection import Session, engine, Base
-from ..models import employee_perfomance
+from database.db_connection import Session, engine, Base
+from models import employee_perfomance
 from pandas import pandas as pd
 
 #Funcion para cargar los datos desde un csv a la base de datos con sqlalchemy y pandas
