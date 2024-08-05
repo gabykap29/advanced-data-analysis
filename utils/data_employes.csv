@@ -1,4 +1,4 @@
-id,employe_id,department,performance_score,years_with_company,salary
+id,employee_id,department,performance_score,years_with_company,salary
 1,1,Marketing,35,1,23616
 2,2,Human Resources,2,2,19
 3,3,Training,90,3,98512

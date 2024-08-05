@@ -7,7 +7,7 @@ class EmployeePerfomance(Base):
     __tablename__ = "employee_perfomance"
     id = Column(Integer, primary_key=True, index=True)
     employee_id = Column(Integer)
-    department = Column(String)
+    department = Column(String(255))
     performance_score = Column(Float)
     years_with_company = Column(Integer)
     salary = Column(Float)
