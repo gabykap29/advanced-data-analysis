@@ -1,36 +1,46 @@
-from database.db_connection import Session, engine, Base
-from models import employee_perfomance
-from utils.add_data_to_mysql import add_data_to_mysql
-from functions.function_to_calculate_medians import * 
-from functions.function_correlation import *
-from functions.function_to_matplolib import *
+from services.median_logic import MendianLogic
+from services.plots import PlotsMathplolib
+from services.correlations import FunctionCorrelation
+from utils.connection_db import ConnectionDB
 
+class DataAnalysis:
+    def __init__(self):
+        # Inicialización de las clases responsables de cálculos y gráficos
+        self.fc = FunctionCorrelation()
+        self.ml = MendianLogic()
+        self.plots = PlotsMathplolib()
+        self.connection = ConnectionDB()
+
+    # Método que ejecuta el análisis de datos
+    def run_analysis(self):
+        self.connection.add_data_to_mysql()
+        print("Data added to MySQL")
+
+        print("Calculating mean of performance_score")
+        self.ml.function_to_calculate_mean()
+        print("Calculating median of performance_score")
+        self.ml.function_to_calculate_medians()
+        print("Calculating std of performance_score")
+        self.ml.function_to_calculate_std()
+        print("Calculating mean of salary")
+        self.ml.function_to_calculate_mean_salary()
+        print("Calculating median of salary")
+        self.ml.function_to_calculate_medians_salary()
+        print("Calculating std of salary")
+        self.ml.function_to_calculate_std_salary()
+        print("All calculations done")
+
+        print("Calculating correlation between performance_score and salary")
+        self.fc.function_correlation_salary()
+        self.fc.function_correlation_years()
+        print("All calculations done")
+
+        print("Generating graphs")
+        self.plots.histograma_performance_score_department()
+        self.plots.scatterplot_years_with_company_vs_performance_score()
+        self.plots.scatterplot_salary_vs_performance_score()
+        print("All graphs done")
+# Path: main.py se utiliza en __name__ para ejecutar el análisis de datos si se ejecuta el archivo main.py
 if __name__ == "__main__":
-    add_data_to_mysql()
-    print("Data added to MySQL")
-    print("Calculating mean of performance_score")
-    function_to_calculate_mean()
-    print("Calculating median of performance_score")
-    function_to_calculate_medians()
-    print("Calculating std of performance_score")
-    function_to_calculate_std()
-    print("Calculating mean of salary")
-    function_to_calculate_mean_salary()
-    print("Calculating median of salary")
-    function_to_calculate_medians_salary()
-    print("Calculating std of salary")
-    function_to_calculate_std_salary()
-    print("All calculations done")
-    #calculamos la correlacion entre performance_score y salary
-    print("Calculating correlation between performance_score and salary")
-    function_correlation_salary()
-    function_correlation_years()
-    print("All calculations done")
-    #graficamos los datos
-    histograma_performance_score_department()
-    scatterplot_years_with_company_vs_performance_score()
-    scatterplot_salary_vs_performance_score()
-    print("All graphs done")
-
-
-
+    analysis = DataAnalysis()
+    analysis.run_analysis()
